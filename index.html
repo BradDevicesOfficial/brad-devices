@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem("bdTheme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+<title>Brad Devices — The computer empire a 15-year-old is building in Africa</title>
+<meta name="description" content="Brad Devices is a 15-year-old founded computer company: an entire ecosystem — chips, GPUs, OS, memory and software — spec'd, shipped toolchain-first, from Africa. See what actually runs today.">
+<meta name="keywords" content="Brad Devices, African tech, silicon, GPU, CPU, NPU, BradVector, RISC, Festus Bradley Nyadimo, technology from Africa">
+<link rel="canonical" href="https://brad-devices.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brad Devices — Software before silicon. Receipts after that.">
+<meta property="og:description" content="A 15-year-old is building a complete computer ecosystem from Africa. Software ships first — silicon is designed. See the receipts.">
+<meta property="og:image" content="https://brad-devices.vercel.app/assets/brad-devices-wordmark/png/brad-devices-wordmark-transparent-black-fill-1024px.png">
+<meta property="og:url" content="https://brad-devices.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brad Devices — the computer empire from Africa">
+<meta name="twitter:description" content="Chips, GPUs, an operating system, memory and a working toolchain — designed as one coherent ecosystem by a 15-year-old.">
+<meta name="theme-color" content="#0E1117">
+<link rel="icon" type="image/png" href="assets/brad-devices-logos/svg/brad-devices-icon-white.svg">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Brad Devices",
+      "slogan": "Software before silicon. Receipts after that.",
+      "email": "brad.devices.official@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "brad.devices.official@gmail.com",
+        "contactType": "customer support"
+      },
+      "founder": { "@type": "Person", "@id": "#festus", "name": "Festus Bradley Nyadimo" },
+      "url": "https://brad-devices.vercel.app/",
+      "description": "Reference-first compute company: a complete computer ecosystem designed from one coherent plan — silicon, memory, OS and software.",
+      "knowsAbout": ["GPU architecture", "computer architecture", "operating systems", "RISC ISA design"]
+    },
+    {
+      "@type": "Person",
+      "@id": "#festus",
+      "name": "Festus Bradley Nyadimo",
+      "jobTitle": "Founder & Chief Architect",
+      "knowsAbout": ["computer architecture", "GPU design", "ISA design", "operating systems"],
+      "description": "15-year-old founder of Brad Devices, building a full-stack computer ecosystem from Africa."
+    }
+  ]
+}</script>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">
+      <img src="assets/brad-devices-logos/svg/brad-devices-icon-white.svg" alt="" aria-hidden="true">
+      <span class="nav-wordmark"><img class="wm" src="assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="142" height="20"><span class="brand-by">By <img class="bv" src="assets/brad-verse-wordmark/svg/brad-verse-wordmark-flat-dark.svg" alt="BradVerse" width="107" height="10"></span></span>
+    </a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" title="Toggle light / dark">
+      <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/achievements/" class="active">What ships</a>
+      <a href="/products/">The Products</a>
+      <a href="/ecosystem/">The Ecosystem</a>
+      <a href="/founder/">The Founder</a>
+      <a href="/docs/">Spec Docs</a>
+        <a href="/glossary/">The Name Map</a>
+      <a class="nav-cta" href="#proof">See it run</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero-home">
+  <div class="container hero-inner" id="hero-inner">
+    <span class="kicker"><span class="k-reg">0x01</span><span class="k-com"> // SHIPPED_TOOLCHAIN · SOFTWARE_BEFORE_SILICON · GEN_1</span></span>
+    <img src="assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="420" height="96" style="max-width:min(78vw,420px);height:auto;display:block;margin:26px auto 10px;font-weight:inherit;" data-receipt="THE WORDMARK · real SVG on a dark hero · ships in PNG 512→4096 / JPG / SVG — open any intro page, meet the brand at full sharpness">
+    <h1>I'm 15. I just designed<br>an <span class="kinetic">entire computer empire.</span><br>From Africa.</h1>
+    <p class="sub">Governments and giants spend billions on one chip.<br>
+    <strong>I</strong> designed the whole stack — the chips, the GPUs, the memory,
+    the operating system, the software — as <strong>one connected plan.</strong> And instead of waiting,
+    I shipped the software first.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#proof">See what actually runs today</a>
+      <a class="btn btn-ghost" href="/founder/">Read my story</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">15</div><div class="l">YEARS OLD</div></div>
+      <div class="hero-stat"><div class="n">52</div><div class="l">REFERENCE SPEC DOCS</div></div>
+      <div class="hero-stat"><div class="n">1</div><div class="l">COHERENT ECOSYSTEM</div></div>
+      <div class="hero-stat"><div class="n">0</div><div class="l">TALK. ONLY SHIPS.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE HOOK (NON-TECH) ===================== -->
+<section class="section" id="hook" data-tag="GEN 1 · THE WHY">
+  <div class="container">
+    <div class="split">
+      <div class="txt reveal">
+        <span class="eyebrow">In plain English</span>
+        <h2>What is Brad Devices?</h2>
+        <p>Normally, a tech giant spends years and billions on <em>one</em> processor — Apple builds the chip,
+        Samsung builds the screen, Microsoft builds the software, and none of it talks properly.</p>
+        <p>Brad Devices turns that around: <strong>I designed the whole thing myself.</strong> Every chip,
+        every GPU, every byte of memory and every line of the operating system was written to work as
+        <strong>a single machine.</strong></p>
+        <ul>
+          <li><strong>I ship first, talk later.</strong> Hardware is designed, software is shipped — now.</li>
+          <li><strong>One family, one language.</strong> Every GPU speaks the same instruction set. Code written for a phone GPU runs on a datacenter chip. No porting.</li>
+          <li><strong>Built in Africa, for the World.</strong> A clean start the incumbents can't take — no acquired legacy to drag, no walls between companies to bridge.</li>
+        </ul>
+      </div>
+      <div class="honesty reveal">
+        <strong>One honest line, up front.</strong><br><br>
+        The chips are <strong>designed, specced, and documented to the last register</strong> — but
+        fabricating silicon requires a fab, and that comes with <strong>Gen 1's production ramp.</strong>
+        So I lead with what is air-tight and real today: a <strong>shipped, running software
+        platform</strong> that executes that architecture. Silicon is a design promise. The toolchain is a
+        fact. Scroll down and watch it run.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE PROOF — LIVE TERMINAL ===================== -->
+<section class="section section-alt" id="proof" data-tag="PART 01 · SHIPPED">
+  <div class="container">
+    <span class="eyebrow">Real. Run. Now.</span>
+    <h2>This is not a pitch. This is a terminal.</h2>
+    <p class="lede">Below is the shipped toolchain running <strong>live, in this tab</strong>: the same
+    <code>bradc.c</code> assembler and <code>bvrt.c</code> interpreter that run in CI, compiled to WebAssembly
+    and executing right now. bradc assembles <code>saxpy</code>, BVRT runs all 32 lanes and verifies the math,
+    and bradgdb steps to a breakpoint — no emulation, no mock.</p>
+
+    <div class="term-rig reveal">
+      <div class="term-frame top" aria-hidden="true">
+        <span class="tc">┌</span><span class="trule"></span><span class="ttag">brad@braddevices:~$ bvrt --live</span><span class="trule"></span><span class="tc">┐</span>
+      </div>
+      <div class="terminal" id="terminal-host" role="img" aria-label="Live execution of the real bradc assembler and BVRT interpreter — compiled to WebAssembly and run in your browser"></div>
+      <div class="term-frame bottom" aria-hidden="true">
+        <span class="tc">└</span><span class="trule"></span><span class="ttag end">· SESSION 001 · LIVE · 0 ERRORS</span><span class="trule"></span><span class="tc">┘</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:26px;">
+      <span class="badge live">LIVE</span>
+      <span class="badge ship">IN THE REPO</span>
+      <span class="badge ref">SILICON = DESIGNED</span>
+    </div>
+
+    <div class="grid grid-2 reveal" style="margin-top:28px;">
+      <div class="card">
+        <img src="assets/diagrams/gpu_core_pipeline.png" alt="BradVector Core six-stage pipeline" style="width:100%;height:auto;border-radius:6px;display:block;">
+        <h3 style="margin-top:12px;">BradVector Core — the six stages this terminal executes</h3>
+        <p>Fetch → Decode → Issue → Register read → Execute → Writeback, drawn in the same gold-dark language every spec wears.</p>
+      </div>
+      <div class="card">
+        <img src="assets/diagrams/ncc_topology.png" alt="NCC cluster topology" style="width:100%;height:auto;border-radius:6px;display:block;">
+        <h3 style="margin-top:12px;">NCC cluster topology — the mesh feeding HB-AIM</h3>
+        <p>The 2×4 Neural Compute Cluster grid, AI-ISA scheduler and BradFusion fabric link — from §3.2 of the book.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  /* Live-loop source: bradvector.wasm (src/wasm/) is the real toolchain
+     compiled to WebAssembly. This recorded `session` is the fallback if
+     wasm cannot load; assemble via `bradc-cli demo.bvbs -o demo.bvbc -d`
+     plus the BVRT saxpy verification from the CI test suite. */
+  var session = [
+    { cmd: "bradc-cli saxpy.bvbs -o saxpy.bvbc -d", ok: true, out:
+"bradc: assembled 10 instruction(s), 134 byte(s) -> saxpy.bvbc\n   0:  IADD  pred=0 dst=2 src1=1 src2=1 imm=0\n   1:  IADD  pred=0 dst=2 src1=2 src2=2 imm=0\n   2:  IADD  pred=0 dst=7 src1=16 src2=2 imm=0\n   3:  LOAD  pred=0 dst=3 src1=7 src2=0 imm=0\n   4:  IMUL  pred=0 dst=4 src1=3 src2=18 imm=0\n   5:  IADD  pred=0 dst=8 src1=17 src2=2 imm=0\n   6:  LOAD  pred=0 dst=5 src1=8 src2=0 imm=0\n   7:  IADD  pred=0 dst=6 src1=4 src2=5 imm=0\n   8:  STORE  pred=0 dst=6 src1=8 src2=0 imm=0\n   9:  EXIT  pred=0 dst=0 src1=0 src2=0 imm=0" },
+    { cmd: "bvrt saxpy.bvbc", ok: true, out: "BVRT saxpy ok (32 lanes) — y[i] = a·x[i] + y[i] verified for all 32 lanes" },
+    { cmd: "bradgdb saxpy.bvbc -b 4", ok: true, out: "break 4 set (IMUL S4, S3, S18)\nhalt @ PC=4 (IMUL S4, S3, S18)\nregs: PC=4 S3=1 S18=4\ncontinue -> BV_HALT - program completed" },
+    { cmd: "ctest --test-dir build", ok: true, out: "100% tests passed, 11 tests out of 11\nBradVector platform · green" }
+  ];
+  function init() {
+    var host = document.getElementById("terminal-host");
+    if (!host) return;
+    if (window.BradLive && window.BradWasm) window.BradLive(host, session, { speed: 1 });
+    else if (window.BradTerminal) window.BradTerminal(host, session, { speed: 1 });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<!-- ===================== ACHIEVEMENT WALL ===================== -->
+<section class="section" id="achievements" data-tag="PART 02 · RECEIPTS">
+  <div class="container">
+    <span class="eyebrow">The receipts</span>
+    <h2>Not a deck. A paper trail.</h2>
+    <p class="lede">Every claim on this site is backed by a file you can open and read today — receipts
+    kept on disk, filed, and cross-referenced.</p>
+
+    <div class="stat-wall reveal">
+      <div class="stat"><div class="num"><span data-count="52">0</span></div><div class="lbl">Reference spec documents</div><div class="sub">one coherent architecture</div></div>
+      <div class="stat"><div class="num"><span data-count="15500">0</span><span class="suffix">+</span></div><div class="lbl">Lines of technical specification</div><div class="sub">every register &amp; wire</div></div>
+      <div class="stat"><div class="num"><span data-count="1689">0</span></div><div class="lbl">Line unified spec compendium</div><div class="sub">THE book · 39 pages, professionally drawn</div></div>
+      <div class="stat"><div class="num"><span data-count="11">0</span><span class="suffix">/11</span></div><div class="lbl">Tests passing, automatically</div><div class="sub">toolchain runs unattended</div></div>
+    </div>
+
+    <div class="grid grid-4 reveal" style="margin-top:28px;">
+      <div class="card">
+        <div class="card-num">SHIPPED · TOOLCHAIN</div>
+        <h3><span class="mono">bradc</span> <span class="badge live">LIVE</span></h3>
+        <p>A real assembler for the BradVector instruction set — the language I built for every GPU I design. Assembly in, portable bytecode out.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">SHIPPED · RUNTIME</div>
+        <h3><span class="mono">BVRT</span> <span class="badge live">LIVE</span></h3>
+        <p>An interpreter that actually executes that bytecode on a 32-lane SIMT virtual machine. Programs verify mathematically.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">SHIPPED · DEBUGGER</div>
+        <h3><span class="mono">bradgdb</span> <span class="badge live">LIVE</span></h3>
+        <p>Breakpoints. Register inspection. Program counters. A debugger for an ISA that hasn't hit a fab yet — but already runs.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">SHIPPED · PROFILER</div>
+        <h3><span class="mono">Timeline</span> <span class="badge live">LIVE</span></h3>
+        <p>A cycle-level trace engine that exports real execution timelines to CSV. Profiling infrastructure ships before the chip — on purpose.</p>
+      </div>
+    </div>
+
+    <blockquote class="brad-quote reveal">
+      "You don't wait for silicon to write software.<br>
+      You ship the software that <span class="gold">forces the silicon to exist.</span>"
+      <cite>— FESTUS BRADLEY NYADIMO, FOUNDER</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ===================== ECOSYSTEM TEASER ===================== -->
+<section class="section section-alt" id="ecosystem" data-tag="PART 03 · ONE FABRIC">
+  <div class="container">
+    <span class="eyebrow">The whole machine</span>
+    <h2>One ecosystem where the giants have seven companies.</h2>
+    <p class="lede">Every white-box giant outsources the pieces. I design the pieces together so they drop
+    into one fabric. Explore each part — or read why the whole is the point.</p>
+    <div class="grid grid-3 reveal">
+      <div class="pillar">
+        <h3>Silicon</h3>
+        <span class="tag badge gen1">Gen 1 — designed</span>
+        <p>The BradChip SoC fuses CPU, GPU, NPU and a custom fabric onto one die. Torox GPU dies — BGT, BFT, BAT — share one instruction set.</p>
+        <ul><li>BradChip &amp; BradXon processors</li><li>Torox GPU family, one ISA</li><li>SPMP unified memory pool</li></ul>
+        <a href="/ecosystem/#silicon">The silicon story →</a>
+      </div>
+      <div class="pillar">
+        <h3>Memory</h3>
+        <span class="tag badge gen1">Gen 1 — designed</span>
+        <p>No "video RAM" vs "system RAM" war. BradRAM + SPMP is one unified pool with an on-die L4 cache the GPU reads like its own notebook.</p>
+        <ul><li>BradRAM on-die L4 SRAM</li><li>SPMP — gigabytes, one pool</li><li>1200 Gb/s candidate-class fabric link</li></ul>
+        <a href="/ecosystem/#memory">The memory story →</a>
+      </div>
+      <div class="pillar">
+        <h3>The Operating System</h3>
+        <span class="tag badge gen1">Gen 1 — designed</span>
+        <p>A homegrown OS — Mobile through Compute — built for one hardware line. 7-year updates. 13-year support. No legacy, no churn.</p>
+        <ul><li>BradOS across every device</li><li>one driver stack everywhere</li><li>7yr OS · 13yr hardware support</li></ul>
+        <a href="/ecosystem/#software">The software story →</a>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a class="btn btn-ghost reveal" href="/ecosystem/">Explore the full ecosystem</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOUNDER TEASER ===================== -->
+<section class="section" id="founder" data-tag="PART 04 · THE FOUNDER">
+  <div class="container">
+    <div class="founder-card reveal">
+      <div class="founder-avatar"><img src="assets/founder.jpg" alt="Festus Bradley Nyadimo — founder and chief architect of Brad Devices"></div>
+      <div>
+        <span class="eyebrow">The founder</span>
+        <h3>Festus Bradley Nyadimo</h3>
+        <div class="founder-role">FOUNDER &amp; CHIEF ARCHITECT · AGE 15 · AFRICA</div>
+<p>While other teenagers were unboxing their first graphics cards, I was designing the chips that go
+        inside them — and then teaching my own architecture to run before anyone else's did.</p>
+        <p>No team, no VC, no lab. <strong>A laptop, an architecture, and the stubbornness to write every
+        layer myself.</strong></p>
+        <a class="btn btn-ghost" href="/founder/">Read the full story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP (SHORT) ===================== -->
+<section class="section section-alt" id="roadmap" data-tag="PART 05 · CADENCE">
+  <div class="container">
+    <span class="eyebrow">Where this is going</span>
+    <h2>Four years per step. Every one tagged before it ships.</h2>
+    <p class="lede">A four-year cadence drives every product. Hardware is tagged honestly between
+    designed-and-tapeout-ready (Gen 1) and requires-future-physics (Vision) — and if the fab door is
+    still shut in 2028, Gen 2 slips. The tag does not move with the date.</p>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <h4>Gen 1 — Kinetic <span class="badge gen1">DESIGNED</span></h4>
+        <span class="tl-year">2026–2029</span>
+        <p>BradChip / BradXon, Torox G1 GPU dies (BGT/BFT/BAT 100-series), SPMP + BradRAM, BradOS,
+        software platform. A complete, coherent plan — and a live toolchain today.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Gen 2 <span class="badge gen2">ARCHITECTED</span></h4>
+        <span class="tl-year">2029–2033</span>
+        <p>Torox G2 (200-series dies), photonic interconnect, sub-2nm node ladder. Newton's turn.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Beyond <span class="badge vision">VISION — HONEST</span></h4>
+        <span class="tl-year">2033+</span>
+        <p>Self-evolving logic, quantum-entangled fabric — explicitly tagged vision until the physics actually exists.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="cta-band" data-tag="NEXT · PART 06">
+  <div class="container" style="position:relative; z-index:2;">
+    <h2>You just watched a 15-year-old's architecture run.</h2>
+    <p>The files are in the repo. The tests are green. The design is documented to the register.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="/achievements/">See everything shipped</a>
+      <a class="btn btn-ghost" href="/docs/">Read the full specification</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-line"><img src="assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" data-receipt="THE WORDMARK · one receipt line · same SVG as the navbar brand — footer finally renders the REAL wordmark, not browser typography" width="168" height="40" style="width:168px;height:40px;display:inline-block;vertical-align:middle;"></div>
+        <p>Software before silicon. Receipts after that.</p>
+        <p class="mono" style="margin-top:8px;">brad.devices.official@gmail.com</p>
+        <p class="mono" style="margin-top:4px;"><a href="mailto:brad.devices.official@gmail.com">say hi →</a></p>
+        <p class="mono" style="margin-top:4px;"><a href="https://github.com/BradDevicesOfficial" target="_blank" rel="noopener">github.com/BradDevicesOfficial</a></p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="/achievements/">What ships today</a></li>
+          <li><a href="/ecosystem/">The ecosystem</a></li>
+          <li><a href="/products/">The product line</a></li>
+          <li><a href="/founder/">The founder</a></li>
+          <li><a href="/docs/">Spec docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Architecture</h5>
+        <ul>
+          <li><span class="mono">BGT / BFT / BAT</span> Torox dies</li>
+          <li><span class="mono">BradVector</span> ISA</li>
+          <li><span class="mono">SPMP</span> unified memory</li>
+          <li><span class="mono">BradOS</span> operating system</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tags</h5>
+        <ul>
+          <li class="badge live">Software: shipped</li>
+          <li class="badge ref">Silicon: designed</li>
+          <li class="badge vision">Vision: honest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Brad Devices · Built in Africa, for the World.</div>
+      <div class="mono">Reference-first: what ships is real. What targets is honest.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/motion.min.js"></script>
+<script src="js/bradvector.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem("bdTheme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+<title>What Brad Devices has shipped — the receipts | Brad Devices</title>
+<meta name="description" content="Everything Brad Devices has actually achieved: a shipped BradVector assembler, interpreter, debugger and profiler; 52 coherent spec documents; a 15,500-line architecture. Proof over promises.">
+<link rel="canonical" href="https://brad-devices.vercel.app/achievements/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="What ships before silicon — Brad Devices receipts">
+<meta property="og:description" content="A shipped toolchain, a designed architecture, a 15,500-line spec. Proof over promises.">
+<meta property="og:image" content="https://brad-devices.vercel.app/assets/brad-devices-wordmark/png/brad-devices-wordmark-transparent-black-fill-1024px.png">
+<meta name="theme-color" content="#0E1117">
+<link rel="icon" type="image/png" href="../assets/brad-devices-logos/svg/brad-devices-icon-white.svg">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brad Devices achievements",
+  "description": "The shipped BradVector toolchain and the designed architecture, documented file by file."
+}</script>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/"><img src="../assets/brad-devices-logos/svg/brad-devices-icon-white.svg" alt="" aria-hidden="true"><span class="nav-wordmark"><img class="wm" src="../assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="142" height="20"><span class="brand-by">By <img class="bv" src="../assets/brad-verse-wordmark/svg/brad-verse-wordmark-flat-dark.svg" alt="BradVerse" width="107" height="10"></span></span></a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" title="Toggle light / dark">
+      <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/achievements/" class="active">What ships</a>
+      <a href="/products/" >The Products</a>
+      <a href="/ecosystem/">The Ecosystem</a>
+      <a href="/founder/">The Founder</a>
+      <a href="/docs/">Spec Docs</a>
+        <a href="/glossary/">The Name Map</a>
+      <a class="nav-cta" href="/#proof">See it run</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="kicker">What ships before silicon</span>
+    <h1>Talk is a design draft.<br>Shipped is the only fact.</h1>
+    <p class="sub">Most "architectures" are decks. Mine is a file tree. Everything below is on my disk,
+    opens today, and — where it runs — runs unattended in CI.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;" id="wall">
+  <div class="container">
+    <div class="stat-wall reveal">
+      <div class="stat"><div class="num"><span data-count="4">0</span></div><div class="lbl">Shipped toolchain tools</div><div class="sub">assembler · runtime · debug · trace</div></div>
+      <div class="stat"><div class="num"><span data-count="52">0</span></div><div class="lbl">Reference spec documents</div><div class="sub">one coherent plan</div></div>
+      <div class="stat"><div class="num"><span data-count="15500">0</span><span class="suffix">+</span></div><div class="lbl">Lines of specification</div><div class="sub">registers, buses, ISAs</div></div>
+      <div class="stat"><div class="num"><span data-count="9">0</span><span class="suffix">/9</span></div><div class="lbl">CI checks — green</div><div class="sub">runs itself, every time</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="toolchain" data-tag="PART 02 · TOOLCHAIN">
+  <div class="container">
+    <span class="eyebrow">Shipped · the reference toolchain</span>
+    <h2>The architecture's software is real software.</h2>
+    <p class="lede">These four tools ship with the project. They work today — and they are the exact
+    test ground the silicon has to pass against when it exists.</p>
+    <p style="margin-top:16px;"><a class="chip" href="/glossary/">new here? every name, one receipt →</a></p>
+
+    <div class="receipt reveal">
+      <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6.5 4 12l5 5.5"/><path d="M15 6.5 20 12l-5 5.5"/></svg></div>
+      <div>
+        <h4><span class="mono">bradc</span> — the BradVector assembler <span class="badge live">SHIPPED</span></h4>
+        <p>Parses my native assembly language (<span class="mono">.basm</span>), validates it, and emits portable
+        bytecode (<span class="mono">.bvbc</span>). It rejects bad code with precise, line-level errors — behaviour the
+        round-trip bytecode tests pin down.</p>
+        <div class="proof">proof: bradc-cli.c · bradc.c · round-trip bytecode tests · 10-insn saxpy confirmed</div>
+      </div>
+    </div>
+
+    <div class="receipt reveal" style="margin-top:16px;">
+      <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg></div>
+      <div>
+        <h4><span class="mono">BVRT</span> — the interpreter <span class="badge live">SHIPPED</span></h4>
+        <p>A 32-lane SIMT virtual machine that executes <span class="mono">.bvbc</span>. In tests it runs a
+        vector saxpy kernel across all 32 lanes and verifies every result — no result left unchecked.</p>
+        <div class="proof">proof: bvrt.c · BVRT saxpy ok (32 lanes) · BV_HALT status</div>
+      </div>
+    </div>
+
+    <div class="receipt reveal" style="margin-top:16px;">
+      <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="5.5"/><path d="M12 8.5V4.8"/><path d="M9.2 6.3 7.6 4.6"/><path d="M14.8 6.3l1.6-1.7"/></svg></div>
+      <div>
+        <h4><span class="mono">bradgdb</span> — the debugger <span class="badge live">SHIPPED</span></h4>
+        <p>Attach, set a breakpoint by instruction, inspect registers and the program counter. A debugger for
+        an ISA that hasn't seen a wafer yet. When the silicon arrives, this debugger has already been
+        exercised for years.</p>
+        <div class="proof">proof: bradgdb.c · attach → break → step → halt flow tested</div>
+      </div>
+    </div>
+
+    <div class="receipt reveal" style="margin-top:16px;">
+      <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16.5 9.5 11l3 3L20 6.5"/><path d="M15 6.5h5v5"/></svg></div>
+      <div>
+        <h4><span class="mono">BradTimeline</span> — the profiler <span class="badge live">SHIPPED</span></h4>
+        <p>A cycle-level trace engine exporting execution timelines to CSV. Your performance toolchain arrives
+        before the hardware — performance engineering is a design input here, so it ships first like everything else.</p>
+        <div class="proof">proof: bradtimeline.c · timeline.csv export · full instruction trace</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="spec" data-tag="PART 03 · DOCUMENTED">
+  <div class="container">
+    <span class="eyebrow">Documented · the architecture</span>
+    <h2>To the last register.</h2>
+    <p class="lede">My silicon is designed — literature-grade, cross-referenced, internally consistent. A
+    1,630-line unified specification consolidates 52 reference documents into one book — the paper trail I keep honest.</p>
+
+    <div class="grid grid-2 reveal">
+      <div class="receipt">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5.5C10 3.8 6.5 3.8 4 4.5v14c2.5-.7 6-.7 8 1 2-1.7 5.5-1.7 8-1v-14C17.5 3.8 14 3.8 12 5.5z"/><path d="M12 5.5v14"/></svg></div>
+        <div>
+          <h4>The unified specification <span class="badge ref">ON DISK</span></h4>
+          <p>1,630 lines covering the whole ecosystem — chips, GPUs, memory, OS, software, console, roadmap —
+          with honest Gen 1 / Gen 2 / Vision tagging throughout.</p>
+          <div class="proof">BRAD_DEVICES_COMPLETE_SPEC.md · <a href="/assets/BRAD_DEVICES_COMPLETE_SPEC.pdf">39-page PDF build</a></div>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="5.5"/><path d="M15.5 15.5 20 20"/></svg></div>
+        <div>
+          <h4>52 reference documents <span class="badge ref">ON DISK</span></h4>
+          <p>Every subsystem has its own deep-dive: BradVector ISA, GPU architecture, memory model, register
+          maps, driver guides, OS design.</p>
+          <div class="proof">Brad Silicon/ · Brad Software/ · Brad Devices/</div>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <div>
+          <h4>A naming language <span class="badge ref">ON DISK</span></h4>
+          <p>Die names carry meaning: corporate <span class="mono">BGT100</span>, integrated <span class="mono">BFT100</span>,
+          datacenter <span class="mono">BAT100</span> — the generation in the number, the tier in the suffix.</p>
+          <div class="proof">GPU_ARCH.md §2 — die naming &amp; Torox G1 registry</div>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.6v6c0 4.3-2.8 7.4-7 9.4-4.2-2-7-5.1-7-9.4V5.6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></div>
+        <div>
+          <h4>Every claim carries a tag <span class="badge vision">BY DESIGN</span></h4>
+          <p>Shipped, designed, or vision — three tags, no invented benchmarks, no pretend silicon. A tag
+          states exactly what the file can prove today.</p>
+          <div class="proof">gen1 / gen2 / vision tags across all 52 docs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" data-tag="NEXT · THE BOOK">
+  <div class="container" style="position:relative; z-index:2;">
+    <h2>Read the book that backs me up.</h2>
+    <p>The full specification is open to read — every register, every risk, every tag I've written.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="/docs/">Open the spec docs</a>
+      <a class="btn btn-ghost" href="/ecosystem/">Explore the ecosystem</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-line"><img src="../assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" data-receipt="THE WORDMARK · one receipt line · same SVG as the navbar brand — footer finally renders the REAL wordmark, not browser typography" width="168" height="40" style="width:168px;height:40px;display:inline-block;vertical-align:middle;"></div>
+        <p>Software before silicon. Receipts after that.</p>
+        <p class="mono" style="margin-top:8px;">brad.devices.official@gmail.com</p>
+        <p class="mono" style="margin-top:4px;"><a href="mailto:brad.devices.official@gmail.com">say hi →</a></p>
+        <p class="mono" style="margin-top:4px;"><a href="https://github.com/BradDevicesOfficial" target="_blank" rel="noopener">github.com/BradDevicesOfficial</a></p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="/achievements/">What ships today</a></li>
+          <li><a href="/ecosystem/">The ecosystem</a></li>
+          <li><a href="/products/">The product line</a></li>
+          <li><a href="/founder/">The founder</a></li>
+          <li><a href="/docs/">Spec docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Architecture</h5>
+        <ul>
+          <li><span class="mono">BGT / BFT / BAT</span> Torox dies</li>
+          <li><span class="mono" title="Brad Devices · the GPU family + ISA + shipped BVRT runtime (PART 02/05)">BradVector</span> ISA</li>
+          <li><span class="mono" title="Brad Devices · the unified DRAM pool — DESIGNED (PART 03)">SPMP</span> unified memory</li>
+          <li><span class="mono" title="Brad Devices · runs across every tier — VISION, OS section (PART 05)">BradOS</span> operating system</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tags</h5>
+        <ul>
+          <li class="badge live">Software: shipped</li>
+          <li class="badge ref">Silicon: designed</li>
+          <li class="badge vision">Vision: honest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Brad Devices · Built in Africa, for the World.</div>
+      <div class="mono">Reference-first: what ships is real. What targets is honest.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../vendor/motion.min.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* bradvector.js — typed JS wrapper over the BradVector toolchain wasm.
+ *
+ * Mirrors the host-facing BradVector Platform API (src/include/brad/
+ * bradlib.h) exported by src/wasm/wasm_bridge.c.  The wasm binary in
+ * site/assets/bradvector.wasm is compiled by src/wasm/build.sh from the
+ * repo's real bradc.c + bvbc.c + bvrt.c + bradgdb.c + bradlib.c.
+ *
+ * Example:
+ *   BradVector.load().then(function () {
+ *     var r = BradVector.compile(
+ *       ".kernel add\\n" +
+ *       "IADD S2, S1, S1\\n" +   // lane*2
+ *       "STORE S16, S2, 0\\n" +
+ *       "EXIT\\n" +
+ *       ".end\\n");
+ *     BradVector.create(1 << 20);
+ *     var status = BradVector.launch("add", [0]) ? BradVector.exec(10000)
+ *                                                : BradVector.Status.TRAP;
+ *   });
+ *
+ * Notes:
+ *  - the wasm allocator is a fixed 6 MB arena (freestanding bump
+ *    allocator), so long-lived pages should compile a bounded number of
+ *    programs; library free() is a no-op there by design.
+ *  - the legacy demo exports (brad_wasm_assemble/run/gdb) reset that
+ *    arena and are meant for the terminal replay; don't interleave them
+ *    with this typed API in one page.
+ */
+(function (global) {
+  "use strict";
+
+  var inst = null;
+  var mem8 = null;
+  var memV = null;
+
+  /* string/arg staging area: 12 MB, above every .bss/.arena global */
+  var enc = 0x0C00000;
+
+  var Status = { OK: 0, TRAP: 1, TIMEOUT: 2, HALT: 3, OOB: 4 };
+
+  function e() {
+    if (!inst) throw new Error("BradVector wasm not loaded (await BradVector.load())");
+    return inst.exports;
+  }
+  function mem() {
+    if (!mem8) throw new Error("BradVector wasm not loaded (await BradVector.load())");
+    return { u8: mem8, v: memV };
+  }
+
+  function putStr(s) {
+    var a = new TextEncoder().encode(String(s));
+    var base = enc;
+    mem8.set(a, base);
+    mem8[base + a.length] = 0;
+    enc += a.length + 1;
+    if (enc > 0xFD0000) throw new Error("wasm staging area exhausted");
+    return { ptr: base, len: a.length };
+  }
+
+  function putArgs(args) {
+    var n = args ? args.length : 0;
+    var base = enc;
+    for (var i = 0; i < n; i++) memV.setUint32(base + i * 4, args[i] >>> 0, true);
+    enc += n * 4;
+    if (enc > 0xFD0000) throw new Error("wasm staging area exhausted");
+    return { ptr: base, len: n };
+  }
+
+  function cstr(ptr) {
+    var s = "";
+    for (var i = ptr; mem8[i]; i++) s += String.fromCharCode(mem8[i]);
+    return s;
+  }
+  function cstrN(ptr, len) {
+    var s = "";
+    for (var i = 0; i < len; i++) s += String.fromCharCode(mem8[ptr + i]);
+    return s;
+  }
+
+  var BradVector = {
+    Status: Status,
+    ARCH: "BradVector v1.0 (BV — reference model)",
+    loaded: function () { return !!inst; },
+
+    /* Instantiate site/assets/bradvector.wasm.  Resolves on success. */
+    load: function () {
+      return fetch("/assets/bradvector.wasm").then(function (r) {
+        if (!r.ok) throw new Error("wasm fetch " + r.status);
+        return r.arrayBuffer();
+      }).then(function (buf) {
+        return WebAssembly.instantiate(buf, {});
+      }).then(function (res) {
+        inst = res.instance;
+        mem8 = new Uint8Array(inst.exports.memory.buffer);
+        memV = new DataView(inst.exports.memory.buffer);
+        return inst;
+      }, function (err) { inst = null; throw err; });
+    },
+
+    /* Compile .bvbs source text.  Result:
+     *   { ok:true, kernels:[name...], insnCount:n }
+     *   { ok:false, errorLine:n, errorMsg:"..." } */
+    compile: function (src) {
+      var t = putStr(src);
+      var ex = e();
+      if (!ex.brad_wasm_compile(t.ptr, t.len)) {
+        return {
+          ok: false,
+          errorLine: ex.brad_wasm_error_line(),
+          errorMsg: cstrN(ex.brad_wasm_error_msg(), ex.brad_wasm_error_msg_len())
+        };
+      }
+      var nk = ex.brad_wasm_kernel_count();
+      var kernels = [];
+      for (var i = 0; i < nk; i++) kernels.push(cstr(ex.brad_wasm_kernel_name(i)));
+      return { ok: true, kernels: kernels, insnCount: ex.brad_wasm_insn_count() };
+    },
+
+    /* Disassemble one instruction at pc into text. */
+    disasm: function (pc) {
+      var ex = e();
+      if (ex.brad_wasm_disasm(pc >>> 0)) return "";
+      return cstrN(ex.brad_wasm_out(), ex.brad_wasm_out_len());
+    },
+
+    /* ── session ── */
+    create: function (memBytes) { return !!e().brad_wasm_create(memBytes >>> 0); },
+    launch: function (kernel, args) {
+      var k = putStr(kernel);
+      var a = putArgs(args);
+      return !!e().brad_wasm_launch(k.ptr, a.ptr, a.len);
+    },
+    exec: function (maxInsns) { return e().brad_wasm_exec(maxInsns >>> 0); },
+    step: function () { return e().brad_wasm_step(); },
+    continue: function () { return e().brad_wasm_continue(); },
+    breakpoint: function (pc) {
+      var id = e().brad_wasm_breakpoint(pc >>> 0);
+      return id === 0xFFFFFFFF ? -1 : id;
+    },
+
+    /* ── inspection ── */
+    pc: function () { return e().brad_wasm_pc(); },
+    cycles: function () { return e().brad_wasm_cycles(); },
+    readS: function (lane, reg) { return e().brad_wasm_read_s(lane >>> 0, reg >>> 0); },
+    readV: function (lane, reg, lane16) { return e().brad_wasm_read_v(lane >>> 0, reg >>> 0, lane16 >>> 0); },
+    readP: function (lane, preg) { return e().brad_wasm_read_p(lane >>> 0, preg >>> 0); },
+
+    /* ── host access to kernel LOAD/STORE memory (flat SPMP) ── */
+    memBase: function () { return e().brad_wasm_mem(); },
+    memSize: function () { return e().brad_wasm_mem_size(); },
+    memDataView: function () { return memV; },
+    memBytes: function () {
+      var ex = e();
+      return new Uint8Array(ex.memory.buffer, ex.brad_wasm_mem(), ex.brad_wasm_mem_size());
+    },
+    writeU32: function (off, val) { memV.setUint32(off >>> 0, val >>> 0, true); return this; },
+    readU32: function (off) { return memV.getUint32(off >>> 0, true); }
+  };
+
+  if (global.BradVector) {
+    throw new Error("bradvector.js: BradVector already defined");
+  }
+  global.BradVector = BradVector;
+})(window);

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem("bdTheme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+<title>404 · route miss — Brad Devices</title>
+<meta name="description" content="The page you requested is not in the symbol table. Return to the known-good address space.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0E1117">
+<link rel="icon" type="image/png" href="/assets/brad-devices-logos/svg/brad-devices-icon-white.svg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">
+      <img src="/assets/brad-devices-logos/svg/brad-devices-icon-white.svg" alt="" aria-hidden="true">
+      <span class="nav-wordmark"><img class="wm" src="/assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="142" height="20"><span class="brand-by">By <img class="bv" src="/assets/brad-verse-wordmark/svg/brad-verse-wordmark-flat-dark.svg" alt="BradVerse" width="107" height="10"></span></span>
+    </a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" title="Toggle light / dark">
+      <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/achievements/">What ships</a>
+      <a href="/ecosystem/">The Ecosystem</a>
+      <a href="/founder/">The Founder</a>
+      <a href="/docs/">Spec Docs</a>
+        <a href="/glossary/">The Name Map</a>
+      <a class="nav-cta" href="/#proof">See it run</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== 404 ===================== -->
+<section class="section page-hero" id="err404">
+  <div class="container" style="text-align:center;">
+    <span class="kicker" style="display:inline-block; font-family:var(--font-mono); font-size:13px; color:var(--brad-gold); letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;">
+      <span class="k-reg" style="color:var(--brad-gold);">[</span> ERR 404 — route miss <span class="k-reg" style="color:var(--brad-gold);">]</span>
+    </span>
+    <div style="font-family:var(--font-mono); font-weight:800; font-size:clamp(4.5rem,14vw,8.5rem); line-height:.95; letter-spacing:-.03em; color:var(--brad-gold);">404</div>
+    <h1 style="font-size:clamp(1.7rem,4vw,2.6rem); font-weight:800; letter-spacing:-.02em; line-height:1.15; margin:18px 0 14px;">This address is out of the symbol table.</h1>
+    <p class="lede" style="margin-left:auto; margin-right:auto; margin-bottom:30px;">
+      The linker couldn't resolve <span class="mono" style="color:var(--brad-gold);" id="bad-path">that route</span>. It either moved,
+      hasn't shipped yet, or never existed — our honesty policy includes 404s.
+      Everything below is still on the symbol table and verifies clean.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="/">Return to /</a>
+      <a class="btn btn-ghost" href="/achievements/">What ships today</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="term-rig reveal" style="max-width:820px; margin:0 auto;">
+      <div class="term-frame top" aria-hidden="true">
+        <span class="tc">┌</span><span class="trule"></span><span class="ttag">brad@braddevices:~$ ld --trace-route 404</span><span class="trule"></span><span class="tc">┐</span>
+      </div>
+      <div class="terminal" id="terminal-404" role="img" aria-label="Error report for the missing page: the requested route is not in the symbol table, with a list of known-good addresses">
+        <div class="term-body" id="term-body-404">
+          <div class="c-live"><span class="prompt">$</span><span>GET <span id="req-path">/unknown</span>  →  resolving …</span></div>
+          <div class="dim">BRAD-ERR 404  BADGE_LOST  symbol '&lt;requested_address&gt;' undefined — no debug info</div>
+          <div class="dim">linker format: this site only serves pages it has receipts for.</div>
+          <div>&nbsp;</div>
+          <div class="ok">Known-good addresses (linked, tested, &lt; 200ms to first byte):</div>
+          <div class="ok">&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; — the whole story, with the live toolchain</div>
+          <div class="ok">&nbsp;&nbsp;/achievements/ — the receipts (what actually ships)</div>
+          <div class="ok">&nbsp;&nbsp;/ecosystem/&nbsp;&nbsp; — chips, GPU, OS, memory — one plan</div>
+          <div class="ok">&nbsp;&nbsp;/products/&nbsp;&nbsp;&nbsp; — the full device line — tagged, receipt-honest</div>
+          <div class="ok">&nbsp;&nbsp;/founder/&nbsp;&nbsp;&nbsp;&nbsp; — who's building it</div>
+          <div class="ok">&nbsp;&nbsp;/docs/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; — the spec docs, incl. the 39-page book</div>
+          <div>&nbsp;</div>
+          <div class="dim">Registers intact. Stack intact. Only the address is wrong.</div>
+          <div class="ok">STATUS: 404 — HALT (not a crash — an honest miss)</div>
+        </div>
+      </div>
+      <div class="term-frame bottom" aria-hidden="true">
+        <span class="tc">└</span><span class="trule"></span><span class="ttag end">· ROUTE TABLE · MISS REPORT · 0 ERRORS ELSEWHERE</span><span class="trule"></span><span class="tc">┘</span>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:34px;">
+      <span class="badge gen1">Software: shipped</span>
+      <span class="badge ref">Silicon: designed</span>
+      <span class="badge vision">Vision: honest</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container"><div class="brand-line"><img src="assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="168" height="40" style="width:168px;height:40px;display:inline-block;vertical-align:middle;" data-receipt="THE FOOTER WORDMARK · one real receipt line · the same real wordmark SVG the navbar + hero ship — open any door, the footer meets the brand at full sharpness"></div>
+    
+    <div class="footer-bottom" style="padding-bottom:34px;">
+      <div>© 2026 Brad Devices · Built in Africa, for the World.</div>
+      <div class="mono">Reference-first: a 404 is also a receipt.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var path = (window.location.pathname || "/").slice(0, 64);
+  var p = document.getElementById("req-path");
+  if (p) p.textContent = path;
+  var b = document.getElementById("bad-path");
+  if (b) b.textContent = path;
+})();
+</script>
+<script src="/vendor/motion.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

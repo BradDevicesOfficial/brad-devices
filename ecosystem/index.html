@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem("bdTheme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+<title>The Brad Devices ecosystem — silicon, GPU, memory, OS, software | Brad Devices</title>
+<meta name="description" content="One coherent ecosystem: BradChip & BradXon processors, Torox GPUs, SPMP/BradRAM memory, BradOS, and a shipped software platform. Every part designed to drop into one fabric.">
+<link rel="canonical" href="https://brad-devices.vercel.app/ecosystem/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The complete Brad Devices ecosystem">
+<meta property="og:description" content="Chips, GPUs, memory, an OS and a software platform — designed as one machine.">
+<meta property="og:image" content="https://brad-devices.vercel.app/assets/brad-devices-wordmark/png/brad-devices-wordmark-transparent-black-fill-1024px.png">
+<meta name="theme-color" content="#0E1117">
+<link rel="icon" type="image/png" href="../assets/brad-devices-logos/svg/brad-devices-icon-white.svg">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-ecosystem">
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/"><img src="../assets/brad-devices-logos/svg/brad-devices-icon-white.svg" alt="" aria-hidden="true"><span class="nav-wordmark"><img class="wm" src="../assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" width="142" height="20"><span class="brand-by">By <img class="bv" src="../assets/brad-verse-wordmark/svg/brad-verse-wordmark-flat-dark.svg" alt="BradVerse" width="107" height="10"></span></span></a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" title="Toggle light / dark">
+      <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/achievements/">What ships</a>
+      <a href="/products/" >The Products</a>
+      <a href="/ecosystem/" class="active">The Ecosystem</a>
+      <a href="/founder/">The Founder</a>
+      <a href="/docs/">Spec Docs</a>
+        <a href="/glossary/">The Name Map</a>
+      <a class="nav-cta" href="/#proof">See it run</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="kicker">One machine, six parts</span>
+    <h1>The whole is the point.</h1>
+    <p class="sub">Big tech splits the computer across companies and calls it "innovation." I design every layer
+    against the same spec — so they fuse instead of fighting. Here is each part.</p>
+  </div>
+</section>
+
+<!-- SILICON -->
+<section class="section" id="silicon" data-tag="PART 01 · SILICON">
+  <div class="container">
+    <div class="split">
+      <div class="txt reveal">
+        <span class="eyebrow">Part 01 · silicon</span>
+        <h3>Processors that share one brain.</h3>
+        <p><strong>BradChip</strong> fuses CPU, GPU, NPU and the custom BradFusion fabric on a single package.
+        <strong>BradXon</strong> is the flagship processor — its Adaptive Neural Fabric adapts the machine to the
+        workload by partitioning the die, reconfiguring the NPU dataflow, and steering power and clock. It reallocates
+        budget, not silicon: it never re-forms the silicon itself.</p>
+        <p>Both speak to a <strong>unified memory pool</strong> through one fabric — no PCIe-style borders between
+        CPU world and GPU world.</p>
+        <ul>
+          <li>BradChip: P8+E8 CPUs · Torox GPU · 1024-core NPU cluster</li>
+          <li>BradXon: ANF — compute partitions + a reconfigurable NPU + a fabric governor</li>
+          <li>One fabric: BradFusion across every die</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>BradChip tier</th><th>CPU</th><th>GPU</th><th>NPU</th></tr></thead>
+            <tbody>
+              <tr><td>Lite</td><td>P2+E4</td><td>BradFx 10</td><td>256</td></tr>
+              <tr><td>Standard</td><td>P4+E4</td><td>BradFx 30</td><td>384</td></tr>
+              <tr><td>Ultra</td><td>P6+E4</td><td>BradFx 50</td><td>512</td></tr>
+              <tr><td>Elite</td><td>P8+E4</td><td>BradFx 70</td><td>768</td></tr>
+              <tr><td>Max</td><td>P8+E8</td><td>BradFx 90</td><td>1024</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GPU -->
+<section class="section section-alt" id="gpu" data-tag="PART 02 · TOROX GPU">
+  <div class="container">
+    <div class="split">
+      <div class="txt reveal">
+        <span class="eyebrow">Part 02 · the GPU</span>
+        <h3>Every GPU. One instruction set. A "Torox" die name.</h3>
+        <p>The <strong>BradVector engine</strong> is the shader/compute core at the heart of every Torox GPU —
+        from integrated <span class="mono">BFT100</span> to flagship <span class="mono">BGT100</span> to datacenter
+        <span class="mono">BAT100</span>. Ray tracing and on-chip AI accelerators sit beside it.</p>
+        <p>Write a kernel once; it is the same ISA on a phone GPU and a datacenter accelerator. That is the
+        entire point of a coherent ecosystem.</p>
+        <ul>
+          <li>One ISA: BradVector, dual-issue SIMT, 32-thread warps</li>
+          <li>Die registry: BGT / BFT / BAT, generation in the number</li>
+          <li>Ray tracking (BradRT) + Neuro-Stream AI cores on-die</li>
+        </ul>
+        <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="badge gen1">TOROX G1</span>
+          <span class="badge ref">SILICON DESIGNED</span>
+          <span class="badge live">ISA SHIPPED</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Die</th><th>Role</th><th>Neuro-Stream</th><th>Gen</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">BGT100</td><td>BradGfx — dedicated</td><td>128→512</td><td><span class="badge gen1">G1</span></td></tr>
+              <tr><td class="mono">BFT100</td><td>BradFx — integrated</td><td>32→192</td><td><span class="badge gen1">G1</span></td></tr>
+              <tr><td class="mono">BAT100</td><td>BradApex — datacenter</td><td>per spec</td><td><span class="badge gen1">G1</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="section" id="memory" data-tag="PART 03 · SPMP">
+  <div class="container">
+    <div class="split">
+      <div class="txt reveal">
+        <span class="eyebrow">Part 03 · memory</span>
+        <h3>The end of "video RAM" vs "system RAM."</h3>
+        <p>BradRAM + SPMP make <strong>one unified memory pool</strong>. The GPU reads and writes it natively on the
+        fabric — it is not the guest in someone else's PCIe lane. An on-die L4 SRAM cache (the "Infinity Buffer")
+        keeps AI weight and workloads hot.</p>
+        <ul>
+          <li>SPMP: gigabytes of unified LPDDR, one pool</li>
+          <li>BradRAM: on-die L4 SRAM stack</li>
+          <li>Zero-copy between CPU, GPU and NPU</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Memory tier</th><th>What it serves</th></tr></thead>
+            <tbody>
+              <tr><td>BradRAM L4</td><td>On-die SRAM — AI weights, hot data</td></tr>
+              <tr><td>SPMP</td><td>Unified DRAM — everything</td></tr>
+              <tr><td>Infinity Buffer</td><td>GPU SRAM — render reconstruction</td></tr>
+              <tr><td>BradSec-RAM</td><td>Encrypted-at-rest memory regions</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOFTWARE / OS -->
+<section class="section section-alt" id="software" data-tag="PART 04 · SYSTEMS">
+  <div class="container">
+    <span class="eyebrow">Part 04 · systems software</span>
+    <h2>An operating system, and a driver that rules them all.</h2>
+    <p class="lede">BradOS runs across Mobile, Slate, Compute and Nano editions. One Kinetic Unified Driver
+    manages SPMP, the fabric, power and memory across all Brad silicon — there is no driver zoo to refresh.</p>
+    <div class="grid grid-3 reveal">
+      <div class="card">
+        <div class="card-num">OS · DESIGNED</div>
+        <h3>BradOS <span class="badge gen1">Gen 1</span></h3>
+        <p>Homegrown, from Mobile to Compute. Built against one hardware line — no legacy baggage, no annual
+        churn. 7-year OS updates, 13-year hardware support.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">DRIVER · DESIGNED</div>
+        <h3>Kinetic Unified Driver <span class="badge ref">Target</span></h3>
+        <p>Vulkan 1.4, DirectX 12 Ultimate, Metal 3, SYCL 2020. One stack to rule the whole fabric's hardware.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">TOOLCHAIN · SHIPPED</div>
+        <h3>BradVector platform <span class="badge live">Live</span></h3>
+        <p>Assembly, bytecode, interpreter, debugger, profiler — the CUDA-analog platform, real and executing
+        today. The performance culture ships before the chip does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" data-tag="PART 05 · PRODUCTS">
+  <div class="container">
+    <span class="eyebrow">Part 05 · products</span>
+    <h2>Where the ecosystem lands.</h2>
+    <p class="lede">Every product is an instance of the same architecture — that is what makes the whole greater
+    than the parts.</p>    <p style="margin-top:14px;"><a class="chip" href="/glossary/">every name on this page — one row, one honest receipt →</a></p>
+    <div class="grid grid-3 reveal">
+      <div class="pillar">
+        <h3>BradMatrix</h3>
+        <span class="tag badge gen1">GEN 1</span>
+        <p>Laptop line built on BradChip and BradOS — from Essential to Ultra, sharing every component with the
+        ecosystem.</p>
+        <ul><li>Same fabric family as phones</li><li>BradSlate, BradMatrix, Compute</li></ul>
+      </div>
+      <div class="pillar">
+        <h3>BradOS Compute</h3>
+        <span class="tag badge gen1">GEN 1</span>
+        <p>Workstations and servers around BradChip Max / BradXon — the same OS as the phone in your pocket, on a
+        datacenter rack.</p>
+        <ul><li>One OS, every scale</li><li>One driver stack everywhere</li></ul>
+      </div>
+      <div class="pillar">
+        <h3>BradAxis</h3>
+        <span class="tag badge gen1">GEN 1</span>
+        <p>The console. A Torox GPU in a box you sit in front of — ecosystem shader math, no porting from mobiles.</p>
+        <ul><li>BradGfx Max-class GPU</li><li>Same shader math, everywhere</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" data-tag="NEXT · THE FOUNDER">
+  <div class="container" style="position:relative; z-index:2;">
+    <h2>One spec ties all six parts together.</h2>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="/#proof">Watch the architecture run</a>
+      <a class="btn btn-ghost" href="/founder/">Meet the person behind it</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-line"><img src="../assets/brad-devices-wordmark/svg/brad-devices-wordmark-white.svg" alt="BRAD DEVICES" data-receipt="THE WORDMARK · one receipt line · same SVG as the navbar brand — footer finally renders the REAL wordmark, not browser typography" width="168" height="40" style="width:168px;height:40px;display:inline-block;vertical-align:middle;"></div>
+        <p>Software before silicon. Receipts after that.</p>
+        <p class="mono" style="margin-top:8px;">brad.devices.official@gmail.com</p>
+        <p class="mono" style="margin-top:4px;"><a href="mailto:brad.devices.official@gmail.com">say hi →</a></p>
+        <p class="mono" style="margin-top:4px;"><a href="https://github.com/BradDevicesOfficial" target="_blank" rel="noopener">github.com/BradDevicesOfficial</a></p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="/achievements/">What ships today</a></li>
+          <li><a href="/ecosystem/">The ecosystem</a></li>
+          <li><a href="/products/">The product line</a></li>
+          <li><a href="/founder/">The founder</a></li>
+          <li><a href="/docs/">Spec docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Architecture</h5>
+        <ul>
+          <li><span class="mono">BGT / BFT / BAT</span> Torox dies</li>
+          <li><span class="mono" title="Brad Devices · the GPU family + ISA + shipped BVRT runtime (PART 02/05)">BradVector</span> ISA</li>
+          <li><span class="mono" title="Brad Devices · the unified DRAM pool — DESIGNED (PART 03)">SPMP</span> unified memory</li>
+          <li><span class="mono" title="Brad Devices · runs across every tier — VISION, OS section (PART 05)">BradOS</span> operating system</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tags</h5>
+        <ul>
+          <li class="badge live">Software: shipped</li>
+          <li class="badge ref">Silicon: designed</li>
+          <li class="badge vision">Vision: honest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Brad Devices · Built in Africa, for the World.</div>
+      <div class="mono">Reference-first: what ships is real. What targets is honest.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../vendor/motion.min.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+# Brad Devices
+
+> The entire computer stack — silicon, GPU, memory, OS, software — designed as one spec by Festus Bradley Nyadimo (By BradVerse), a 15-year-old building from Africa. Software ships before silicon: every SHIPPED part below is a real file tree that runs today and is verified unattended in CI.
+
+## What this site actually is
+
+Every claim on this site carries one of three receipts, and a tag that states exactly what a file can prove today:
+
+- SOLID / SHIPPED — the software or document exists, opens today, and runs unattended in CI.
+- DESIGNED — the silicon is fully registered and specced; production is a fab step.
+- VISION — honest future physics, labeled as such.
+
+Nothing is dressed up beyond its tag: no invented benchmarks, no pretend silicon. The product line puts every device in a tier (SHIPPED / DESIGNED / VISION) with the file tree to prove it.
+
+## Provides
+
+- The one book: a 1,689-line unified compendium (52 reference chapters, parts 0–10 + appendices) covering chips, GPUs, memory, OS, compute, software, console and roadmap — every register accounted for, with Gen 1 / Gen 2 / Vision tagging. Ships as a 39-page branded PDF.
+- BradVector — the CPU/GPU shared instruction-set architecture (dual-issue SIMT, 32-thread warps) behind every processor and every Torox GPU.
+- The Torox GPU family — BFT100 (integrated), BGT100 (dedicated), BAT100 (datacenter) — one die name, three jobs, one ISA from phone to rack.
+- The unified memory model — SPMP (DRAM pool) + BradRAM (on-die L4 SRAM) + the Infinity Buffer, zero-copy between CPU, GPU and NPU.
+- BradOS and the Kinetic Unified Driver across Mobile, Slate, Compute and Nano.
+- The shipped reference toolchain — assembler, interpreter, debugger, profiler, one-binary dev CLI, host API, and browser wasm build.
+- BradDevKit, TIFA AI toolchain, and BMS cloud services — all stdlib-only, all runnable today.
+- ANF — BradXon's Adaptive Neural Fabric: compute partitions (MIG-class), a reconfigurable dataflow NPU (CGRA-class), and a fabric governor that steers clock/power/bandwidth. It adapts budget, not silicon — DESIGNED Gen 1; the literal unit-morph stays VISION.
+
+## The reference toolchain (SHIPPED, runs today)
+
+- bradc — the BradVector assembler. Parses .basm, validates, emits portable .bvbc bytecode; rejects bad code with line-level errors. Behavior pinned by round-trip bytecode tests; a 10-insn saxpy confirmed.
+- BVRT — a 32-lane SIMT virtual machine that interprets .bvbc; runs vector saxpy across all 32 lanes and checks every result.
+- bradgdb — the debugger. Attach, set an instruction breakpoint, inspect registers and the program counter.
+- BradTimeline — cycle-level trace engine exporting full instruction traces to CSV.
+- braddev — the one-binary dev CLI (cvt / run / dbg / gpu info / gpu top / timeline / test) built on the shipped stack plus SPMP / EROE / Fabric drivers. All self-checks pass; saxpy and fib run end-to-end.
+- bradlib.h — the stable host-facing BradVector Platform API (compile → pack → session → launch → run → inspect → breakpoints), exposed 1:1 to the browser via site/js/bradvector.js.
+- TIFA SDK — Python-first AI toolchain (import tifa): one-line optimize(), AutoNeuroStream partition (BNV / BVX / BFX), MoE expert spooler, exact FP8/FP4/INT4 digit formats.
+- BMS — Brad Mobile Services: REST spec + stdlib-only reference server — BradID auth, BradMail, BradHub, BradPay ledger, BradCloud, BradNotify, BradGeo.
+
+## The stack — one machine, six parts
+
+- Silicon: BradChip fuses CPU + GPU + NPU + the custom BradFusion fabric on one package (tiers Lite P2+E4 → Max P8+E8; Torox GPU; up to 1024-core NPU). BradXon is the flagship whose Adaptive Neural Fabric — compute partitions, a reconfigurable dataflow NPU, a fabric governor — steers power, clock, and fabric budget to the workload. One fabric crosses every die — no PCIe-style borders.
+- GPU: every Torox die runs the same BradVector engine — write a kernel once, it runs on integrated, discrete and datacenter. BradRays ray tracking and Neuro-Stream AI cores sit on-die. Die registry: BGT / BFT / BAT, generation in the number, tier in the suffix (G1 today).
+- Memory: BradRAM + SPMP = one unified pool; the GPU is not a guest in a PCIe lane. BradRAM on-die L4 SRAM stack, SPMP gigabytes of unified LPDDR, Infinity Buffer GPU SRAM, BradSec-RAM encrypted-at-rest regions.
+- Systems software: BradOS across Mobile/Slate/Compute/Nano editions (7-year OS updates, 13-year hardware support); the Kinetic Unified Driver targets Vulkan 1.4, DirectX 12 Ultimate, Metal 3, SYCL 2020 — one driver stack, no driver zoo.
+- Products: BradMatrix laptops (Essential → Ultra), BradOS Compute workstations/servers, and the BradAxis console (Torox GPU in a box, Nexus controller) — every product an instance of the same architecture.
+- The toolchain above ties all six parts together and ships first.
+
+## Specifications (PDF)
+
+- [The complete Brad Devices spec (39 pages)](https://brad-devices.vercel.app/assets/BRAD_DEVICES_COMPLETE_SPEC.pdf): the definitive reference — all registers, encodings and systems in one book.
+- [BradGFX architecture (11 pages)](https://brad-devices.vercel.app/assets/specs/bradgfx_arch.pdf): the GPU architecture — the six-stage BradVector pipeline and render path drawn as stage diagrams.
+- [BradISA (11 pages)](https://brad-devices.vercel.app/assets/specs/bradisa_spec.pdf): the ISA — real bit-field figures for RRR / RI / BR / JMP.
+- [BradISA v2 vector extension (16 pages)](https://brad-devices.vercel.app/assets/specs/bradisa_v2_ext.pdf): 16-bit compressed layout + 256-bit VSET lanes.
+- [BradXON platform (17 pages)](https://brad-devices.vercel.app/assets/specs/bradxon_platform.pdf): Gen 1 platform — address-layout bands, MMIO, the ANF fabric governor and compute partitions.
+- [Brad Devices product portfolio (16 pages)](https://brad-devices.vercel.app/assets/specs/product_portfolio.pdf): the full product line — brand-hierarchy tree + software portfolio.
+- [Competitive analysis (10 pages)](https://brad-devices.vercel.app/assets/specs/competitive_analysis.pdf): whitespace vs the giants — the software-moat line is shipped.
+- [BradVector Core vs Intel (8 pages)](https://brad-devices.vercel.app/assets/specs/bradcore_vs_intel.pdf): core-by-core vs the incumbent — benchmark tables, honest rows.
+
+## Key documents in the 52-chapter source tree
+
+- Brad Silicon/GPU/GPU_ISA.md — the BradVector instruction set every Torox GPU shares.
+- Brad Silicon/GPU/GPU_ARCH.md — Torox microarchitecture, die naming, the G1 registry.
+- Brad Silicon/GPU/GPU_COMPUTE.md — kernels, warps, scheduling, shared memory.
+- Brad Silicon/CPU/PLATFORM_SPEC.md — SoC platforms, boards, cooling, memory modules.
+- Brad Silicon/Memory/ — BRADRAM / SPMP: memory die, unified pool, power/security/timing (7 docs).
+- Brad Software/OS/BRADOS_COMPLETE.md — the OS across Mobile–Compute editions.
+- Brad Devices/Console/BRADAXIS_SPEC.md — the console with the Nexus controller.
+- Brad Software/OS/BRADVECTOR_PLATFORM_MOAT.md — why the shipped toolchain is the moat.
+
+## Info pages
+
+- [Home](https://brad-devices.vercel.app/): the concise pitch and the receipts.
+- [Products](https://brad-devices.vercel.app/products/): every device tagged SHIPPED / DESIGNED / VISION.
+- [Ecosystem](https://brad-devices.vercel.app/ecosystem/): silicon, GPU, memory, OS, products and toolchain as one machine in six parts.
+- [Founder](https://brad-devices.vercel.app/founder/): Festus Bradley Nyadimo and the working-toolchain argument.
+- [Spec docs](https://brad-devices.vercel.app/docs/): the book, the branded spec set, and the 52-chapter tree.
+- [Achievements](https://brad-devices.vercel.app/achievements/): what actually ships, unattended in CI.
+- [Glossary](https://brad-devices.vercel.app/glossary/): the name map — one receipt line per name, including the micro-words (P/E core, NPU, ISA, SRAM, DRAM, GPU, SoC, fabric, die, stack).
+
+## How to verify
+
+- Read the book: the 39-page PDF or the 1,689-line compendium everything points to.
+- Watch it run: the toolchain executes in CI — braddev test at 11/11 green, saxpy across 32 lanes, round-trip bytecode tests, and the in-browser wasm build of the platform API.
+- Contact: brad.devices.official@gmail.com
+- GitHub: https://github.com/BradDevicesOfficial
