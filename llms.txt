@@ -15,7 +15,7 @@ Nothing is dressed up beyond its tag: no invented benchmarks, no pretend silicon
 ## Provides
 
 - The one book: a 1,689-line unified compendium (52 reference chapters, parts 0–10 + appendices) covering chips, GPUs, memory, OS, compute, software, console and roadmap — every register accounted for, with Gen 1 / Gen 2 / Vision tagging. Ships as a 39-page branded PDF.
-- BradVector — the CPU/GPU shared instruction-set architecture (dual-issue SIMT, 32-thread warps) behind every processor and every Torox GPU.
+- BradVector — the GPU/accelerator instruction-set architecture (dual-issue SIMT, 32-thread warps) that every Torox die runs: BradFx (integrated), BradGfx (dedicated), BradApex (datacenter). It is a separate ISA from the CPU-side BradISA; the two meet on the BradFusion fabric and share memory (SPMP), not instructions.
 - The Torox GPU family — BFT100 (integrated), BGT100 (dedicated), BAT100 (datacenter) — one die name, three jobs, one ISA from phone to rack.
 - The unified memory model — SPMP (DRAM pool) + BradRAM (on-die L4 SRAM) + the Infinity Buffer, zero-copy between CPU, GPU and NPU.
 - BradOS and the Kinetic Unified Driver across Mobile, Slate, Compute and Nano.
@@ -25,7 +25,7 @@ Nothing is dressed up beyond its tag: no invented benchmarks, no pretend silicon
 
 ## The reference toolchain (SHIPPED, runs today)
 
-- bradc — the BradVector assembler. Parses .basm, validates, emits portable .bvbc bytecode; rejects bad code with line-level errors. Behavior pinned by round-trip bytecode tests; a 10-insn saxpy confirmed.
+- bradc — the BradVector assembler. Parses .bvbs, validates, emits portable .bvbc bytecode; rejects bad code with line-level errors. Behavior pinned by round-trip bytecode tests; a 10-insn saxpy confirmed.
 - BVRT — a 32-lane SIMT virtual machine that interprets .bvbc; runs vector saxpy across all 32 lanes and checks every result.
 - bradgdb — the debugger. Attach, set an instruction breakpoint, inspect registers and the program counter.
 - BradTimeline — cycle-level trace engine exporting full instruction traces to CSV.
@@ -54,16 +54,16 @@ Nothing is dressed up beyond its tag: no invented benchmarks, no pretend silicon
 - [Competitive analysis (10 pages)](https://brad-devices.vercel.app/assets/specs/competitive_analysis.pdf): whitespace vs the giants — the software-moat line is shipped.
 - [BradVector Core vs Intel (8 pages)](https://brad-devices.vercel.app/assets/specs/bradcore_vs_intel.pdf): core-by-core vs the incumbent — benchmark tables, honest rows.
 
-## Key documents in the 52-chapter source tree
+## Key documents in the 52-chapter design tree
 
-- Brad Silicon/GPU/GPU_ISA.md — the BradVector instruction set every Torox GPU shares.
-- Brad Silicon/GPU/GPU_ARCH.md — Torox microarchitecture, die naming, the G1 registry.
-- Brad Silicon/GPU/GPU_COMPUTE.md — kernels, warps, scheduling, shared memory.
-- Brad Silicon/CPU/PLATFORM_SPEC.md — SoC platforms, boards, cooling, memory modules.
-- Brad Silicon/Memory/ — BRADRAM / SPMP: memory die, unified pool, power/security/timing (7 docs).
-- Brad Software/OS/BRADOS_COMPLETE.md — the OS across Mobile–Compute editions.
-- Brad Devices/Console/BRADAXIS_SPEC.md — the console with the Nexus controller.
-- Brad Software/OS/BRADVECTOR_PLATFORM_MOAT.md — why the shipped toolchain is the moat.
+- BradVector ISA — the instruction set every Torox GPU shares (public: github.com/BradDevicesOfficial/BradVector).
+- Torox GPU architecture — microarchitecture, die naming, the G1 registry.
+- Compute model — kernels, warps, scheduling, shared memory.
+- BradChip platform — SoC platforms, boards, cooling, memory modules.
+- BradRAM / SPMP — memory die, unified pool, power/security/timing.
+- BradOS — the OS across Mobile–Compute editions.
+- BradAxis — the console with the Nexus controller.
+- Platform strategy — why the shipped toolchain is the moat.
 
 ## Info pages
 
