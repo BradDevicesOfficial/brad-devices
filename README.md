@@ -25,6 +25,10 @@
   Live: <a href="https://brad-devices.vercel.app"><strong>https://brad-devices.vercel.app</strong></a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/BradDevicesOfficial/brad-devices/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/BradDevicesOfficial/brad-devices/actions/workflows/ci.yml/badge.svg"></a>
+</p>
+
 ---
 
 ## What this is

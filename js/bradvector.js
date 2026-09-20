@@ -77,6 +77,32 @@
     return s;
   }
 
+  /* f32 staging + float-bits helpers for the BVLibs exports. */
+  function f32bits(v) {
+    var d = new DataView(new ArrayBuffer(4));
+    d.setFloat32(0, v, true);
+    return d.getUint32(0, true);
+  }
+  function putF32(arr) {
+    var n = arr.length;
+    var base = (enc + 3) & ~3;
+    for (var i = 0; i < n; i++) memV.setFloat32(base + i * 4, arr[i], true);
+    enc = base + n * 4;
+    if (enc > 0xFD0000) throw new Error("wasm staging area exhausted");
+    return base;
+  }
+  function readF32(ptr, n) {
+    var out = new Float32Array(n);
+    for (var i = 0; i < n; i++) out[i] = memV.getFloat32(ptr + i * 4, true);
+    return out;
+  }
+  function libSolo(op, x) {
+    var n = x.length;
+    var xp = putF32(x), op_ = putF32(new Float32Array(n));
+    if (e()[op](xp, op_, n)) return null;
+    return readF32(op_, n);
+  }
+
   var BradVector = {
     Status: Status,
     ARCH: "BradVector v1.0 (BV — reference model)",
@@ -154,7 +180,51 @@
       return new Uint8Array(ex.memory.buffer, ex.brad_wasm_mem(), ex.brad_wasm_mem_size());
     },
     writeU32: function (off, val) { memV.setUint32(off >>> 0, val >>> 0, true); return this; },
-    readU32: function (off) { return memV.getUint32(off >>> 0, true); }
+    readU32: function (off) { return memV.getUint32(off >>> 0, true); },
+
+    /* ── BVLibs (BVML/BVN) ──
+     * Reference GEMM / NN primitives running on the in-browser BVRT.
+     * Each op takes/returns Float32Array (null on launch failure).
+     * check() runs the bridge's self-check and returns {fails, report}. */
+    lib: {
+      bvmlSaxpy: function (a, x, y) {
+        if (x.length !== y.length || !x.length) throw new Error("bvmlSaxpy: length mismatch");
+        var n = x.length, xp = putF32(x), yp = putF32(y), op_ = putF32(new Float32Array(n));
+        if (e().brad_wasm_bvml_saxpy(f32bits(a), xp, yp, op_, n)) return null;
+        return readF32(op_, n);
+      },
+      bvmlDot: function (x, y) {
+        if (x.length !== y.length || !x.length) throw new Error("bvmlDot: length mismatch");
+        var n = x.length, xp = putF32(x), yp = putF32(y), op_ = putF32(new Float32Array(1));
+        if (e().brad_wasm_bvml_dot(xp, yp, op_, n)) return null;
+        return readF32(op_, 1)[0];
+      },
+      bvmlGemm: function (alpha, A, B, beta, C) {
+        if (!(A && B && C) || !A.length || !B.length) throw new Error("bvmlGemm: empty input");
+        var nC = C.length, nA = A.length, nB = B.length;
+        var M = Math.round(Math.sqrt((nA * nC) / (nB || 1)));
+        var Kk = Math.round(nA / M), N = Math.round(nB / Kk);
+        if (!(M > 0 && Kk > 0 && N > 0 && M * N === nC && M * Kk === nA && Kk * N === nB))
+          throw new Error("bvmlGemm: shapes not MxK * KxN -> MxN ([" + nA + "]x[" + nB + "] -> [" + nC + "])");
+        var ap = putF32(A), bp = putF32(B), cp = putF32(C);
+        if (e().brad_wasm_bvml_gemm(f32bits(alpha), ap, bp, f32bits(beta), cp, M, N, Kk)) return null;
+        return readF32(cp, nC);
+      },
+      bvnRelu: function (x) { return libSolo("brad_wasm_bvn_relu", x); },
+      bvnAffine: function (scale, bias, x) {
+        var n = x.length, xp = putF32(x), op_ = putF32(new Float32Array(n));
+        if (e().brad_wasm_bvn_affine(f32bits(scale), f32bits(bias), xp, op_, n)) return null;
+        return readF32(op_, n);
+      },
+      bvnSoftmax: function (x) { return libSolo("brad_wasm_bvn_softmax", x); },
+      bvnGelu: function (x) { return libSolo("brad_wasm_bvn_gelu", x); },
+      bvnSilu: function (x) { return libSolo("brad_wasm_bvn_silu", x); },
+      check: function () {
+        var ex = e();
+        var fails = ex.brad_wasm_lib_check();
+        return { fails: fails, report: cstrN(ex.brad_wasm_out(), ex.brad_wasm_out_len()) };
+      }
+    }
   };
 
   if (global.BradVector) {

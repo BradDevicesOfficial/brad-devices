@@ -31,6 +31,7 @@ Nothing is dressed up beyond its tag: no invented benchmarks, no pretend silicon
 - BradTimeline — cycle-level trace engine exporting full instruction traces to CSV.
 - braddev — the one-binary dev CLI (cvt / run / dbg / gpu info / gpu top / timeline / test) built on the shipped stack plus SPMP / EROE / Fabric drivers. All self-checks pass; saxpy and fib run end-to-end.
 - bradlib.h — the stable host-facing BradVector Platform API (compile → pack → session → launch → run → inspect → breakpoints), exposed 1:1 to the browser via site/js/bradvector.js.
+- BVLibs — the reference math + neural libraries (BVML: saxpy, dot; BVN: relu, affine, softmax, gelu, silu). Public boundary: API headers, .bvbs kernels, tests, and an independent host reference — repo BradDevicesOfficial/BVLibs; run live in the site's wasm via BradVector.lib.*.
 - TIFA SDK — Python-first AI toolchain (import tifa): one-line optimize(), AutoNeuroStream partition (BNV / BVX / BFX), MoE expert spooler, exact FP8/FP4/INT4 digit formats.
 - BMS — Brad Mobile Services: REST spec + stdlib-only reference server — BradID auth, BradMail, BradHub, BradPay ledger, BradCloud, BradNotify, BradGeo.
 

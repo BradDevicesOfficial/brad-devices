@@ -155,6 +155,26 @@
       <span class="badge ref">SILICON = DESIGNED</span>
     </div>
 
+    <div class="reveal" style="margin-top:34px;">
+      <span class="badge ship">BVLIBS</span>
+      <span class="eyebrow" style="display:inline-block; margin:0 0 0 10px;">The library layer is in this tab too</span>
+      <p class="lede" style="margin-top:8px;">On top of the ISA runs <strong>BVLibs</strong> — the reference math and neural
+      primitives (<code>BVML</code>: saxpy, dot, <strong>gemm</strong>; <code>BVN</code>: relu, affine, softmax, gelu, silu). The same
+      C sources that build against the shipped runtime are compiled
+      into this page: <code>lib.check()</code> drives the real <code>bvml.c</code>/<code>bvn.c</code> through the in-browser BVRT,
+      then runs live ops on real vectors.</p>
+    </div>
+
+    <div class="term-rig reveal" style="margin-top:14px;">
+      <div class="term-frame top" aria-hidden="true">
+        <span class="tc">┌</span><span class="trule"></span><span class="ttag">brad@braddevices:~$ braddev lib test</span><span class="trule"></span><span class="tc">┐</span>
+      </div>
+      <div class="terminal" id="lib-host" role="img" aria-label="Live BVML/BVN self-check running the real reference library sources in WebAssembly"></div>
+      <div class="term-frame bottom" aria-hidden="true">
+        <span class="tc">└</span><span class="trule"></span><span class="ttag end">· SESSION 002 · BVLIBS · 0 ERRORS</span><span class="trule"></span><span class="tc">┘</span>
+      </div>
+    </div>
+
     <div class="grid grid-2 reveal" style="margin-top:28px;">
       <div class="card">
         <img src="assets/diagrams/gpu_core_pipeline.png" alt="BradVector Core six-stage pipeline" style="width:100%;height:auto;border-radius:6px;display:block;">
@@ -385,5 +405,47 @@
 <script src="vendor/motion.min.js"></script>
 <script src="js/bradvector.js"></script>
 <script src="js/app.js"></script>
+<script>
+(function () {
+  /* BVLibs live panel — drives the real bvml.c/bvn.c (compiled into
+     bradvector.wasm) through the typed wrapper. No recorded strings:
+     lib.check() and bvn_silu run right now in this tab. */
+  var host = document.getElementById("lib-host");
+  if (!host) return;
+  var pre = document.createElement("div");
+  pre.className = "term-body";
+  host.appendChild(pre);
+  function line(text, color) {
+    var d = document.createElement("div");
+    d.style.whiteSpace = "pre-wrap";
+    if (color) d.style.color = color;
+    d.textContent = text;
+    pre.appendChild(d);
+  }
+  function run() {
+    if (!window.BradVector) { line("bradvector.js not loaded", "var(--orbit-muted)"); return; }
+    BradVector.load().then(function () {
+      line("$ braddev lib test");
+      var c = BradVector.lib.check();
+      c.report.split("\n").forEach(line);
+      line("$ live op — bvn_silu([-2,-1,0,1,2])");
+      var silu = BradVector.lib.bvnSilu(new Float32Array([-2, -1, 0, 1, 2]));
+      if (silu) line(Array.prototype.map.call(silu, function (v) { return v.toFixed(5); }).join("   "));
+      line("$ live op — bvml_gemm(0.5, 2x3, 3x2, 0.0, 2x2)");
+      var gemm = BradVector.lib.bvmlGemm(0.5, new Float32Array([1,2,3,4,5,6]),
+                                         new Float32Array([7,8,9,10,11,12]),
+                                         0.0, new Float32Array(4));
+      if (gemm) line(Array.prototype.map.call(gemm, function (v) { return v.toFixed(1); }).join("   "));
+      line(c.fails === 0
+        ? "◼ BVLibs (BVML 0.2.0 + BVN 0.2.0) — all checks PASSED · green"
+        : "◼ " + c.fails + " check(s) FAILED",
+        c.fails === 0 ? "var(--live)" : "var(--orbit-muted)");
+    }, function (err) {
+      line("wasm failed to load here: " + err.message, "var(--orbit-muted)");
+    });
+  }
+  run();
+})();
+</script>
 </body>
 </html>
