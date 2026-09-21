@@ -27,6 +27,16 @@
 
 <p align="center">
   <a href="https://github.com/BradDevicesOfficial/brad-devices/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/BradDevicesOfficial/brad-devices/actions/workflows/ci.yml/badge.svg"></a>
+<p align="center">
+  <img alt="C" src="https://img.shields.io/badge/C-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="Assembly" src="https://img.shields.io/badge/Assembly-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="Verilog" src="https://img.shields.io/badge/Verilog-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="VHDL" src="https://img.shields.io/badge/VHDL-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="Python" src="https://img.shields.io/badge/Python-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="WebAssembly" src="https://img.shields.io/badge/WebAssembly-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="Linux" src="https://img.shields.io/badge/Linux-8A6D1F?style=for-the-badge">&nbsp;
+  <img alt="LaTeX" src="https://img.shields.io/badge/LaTeX-8A6D1F?style=for-the-badge">
 </p>
 
 ---
